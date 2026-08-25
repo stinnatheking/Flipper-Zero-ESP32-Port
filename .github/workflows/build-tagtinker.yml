@@ -16,7 +16,7 @@ jobs:
       - name: Checkout your fork
         uses: actions/checkout@v4
 
-      - name: Build the firmware once (needed before any app can be built)
+      - name: Build the firmware (includes the firmware_api.c fix)
         run: |
           . "$IDF_PATH/export.sh"
           idf.py -B build_t_embed set-target esp32s3
@@ -32,4 +32,11 @@ jobs:
         with:
           name: tagtinker-fap
           path: build_t_embed/fap/tagtinker2.fap
+          if-no-files-found: error
+
+      - name: Upload the firmware .bin so you can reflash it
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-bin
+          path: build_t_embed/furi_esp32.bin
           if-no-files-found: error
