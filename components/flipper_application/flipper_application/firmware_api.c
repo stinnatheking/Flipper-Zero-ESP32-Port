@@ -1,4 +1,4 @@
-    /**
+/**
  * @brief Firmware API interface for ESP32 port.
  * Exposes firmware functions to dynamically loaded FAP applications.
  *
@@ -77,6 +77,7 @@
 #include <assets_icons.h>
 #include <nfc/nfc_device.h>
 #include <nfc/protocols/mf_ultralight/mf_ultralight.h>
+#include <nfc/protocols/mf_ultralight/mf_ultralight_poller_sync.h>
 #include <nfc/protocols/mf_classic/mf_classic.h>
 #include <nfc/protocols/mf_classic/mf_classic_poller_sync.h>
 #include <nfc/protocols/mf_desfire/mf_desfire.h>
@@ -651,6 +652,7 @@ static const struct sym_entry firmware_api_table[] = {
     { .hash = 0x6728399c, .address = (uint32_t)subghz_receiver_set_filter }, /* subghz_receiver_set_filter */
     { .hash = 0x6776e177, .address = (uint32_t)esp_err_to_name }, /* esp_err_to_name */
     { .hash = 0x678ee68d, .address = (uint32_t)loading_alloc }, /* loading_alloc */
+    { .hash = 0x67a2fee4, .address = (uint32_t)sequence_blink_start_cyan }, /* sequence_blink_start_cyan */
     { .hash = 0x67af1453, .address = (uint32_t)furi_string_reset }, /* furi_string_reset */
     { .hash = 0x67b1132e, .address = (uint32_t)furi_string_right }, /* furi_string_right */
     { .hash = 0x67c13049, .address = (uint32_t)furi_string_set_n }, /* furi_string_set_n */
@@ -821,6 +823,7 @@ static const struct sym_entry firmware_api_table[] = {
     { .hash = 0x97a23c96, .address = (uint32_t)furi_hal_rtc_is_flag_set }, /* furi_hal_rtc_is_flag_set */
     { .hash = 0x97e71f00, .address = (uint32_t)&furi_hal_spi_bus_handle_subghz }, /* furi_hal_spi_bus_handle_subghz */
     { .hash = 0x97f3e820, .address = (uint32_t)&sequence_single_vibro }, /* sequence_single_vibro */
+    { .hash = 0x98174bb8, .address = (uint32_t)mf_ultralight_free }, /* mf_ultralight_free */
     { .hash = 0x98383973, .address = (uint32_t)furi_thread_free }, /* furi_thread_free */
     { .hash = 0x983a5ec1, .address = (uint32_t)furi_thread_join }, /* furi_thread_join */
     { .hash = 0x985ace0d, .address = (uint32_t)storage_simply_mkdir }, /* storage_simply_mkdir */
@@ -833,6 +836,7 @@ static const struct sym_entry firmware_api_table[] = {
     { .hash = 0x99f4ff3a, .address = (uint32_t)esp_timer_get_time }, /* esp_timer_get_time */
     { .hash = 0x9a02017a, .address = (uint32_t)bit_buffer_append_bytes }, /* bit_buffer_append_bytes */
     { .hash = 0x9a9a8b99, .address = (uint32_t)infrared_send }, /* infrared_send */
+    { .hash = 0x9aa31d61, .address = (uint32_t)mf_ultralight_alloc }, /* mf_ultralight_alloc */
     { .hash = 0x9bc31804, .address = (uint32_t)esp_wifi_connect }, /* esp_wifi_connect */
     { .hash = 0x9bc4b4b9, .address = (uint32_t)stream_rewind }, /* stream_rewind */
     { .hash = 0x9c120acd, .address = (uint32_t)storage_dir_close }, /* storage_dir_close */
@@ -1009,6 +1013,7 @@ static const struct sym_entry firmware_api_table[] = {
     { .hash = 0xc77ee764, .address = (uint32_t)bt_disconnect }, /* bt_disconnect */
     { .hash = 0xc7859dc6, .address = (uint32_t)submenu_reset }, /* submenu_reset */
     { .hash = 0xc7951afe, .address = (uint32_t)flipper_format_seek_to_end }, /* flipper_format_seek_to_end */
+    { .hash = 0xc826a334, .address = (uint32_t)mf_ultralight_poller_sync_read_card }, /* mf_ultralight_poller_sync_read_card */
     { .hash = 0xc83c90e7, .address = (uint32_t)bit_buffer_alloc }, /* bit_buffer_alloc */
     { .hash = 0xc85a9602, .address = (uint32_t)furi_hal_light_blink_start }, /* furi_hal_light_blink_start */
     { .hash = 0xc8a8c265, .address = (uint32_t)subghz_keystore_get_data }, /* subghz_keystore_get_data */
@@ -1130,6 +1135,7 @@ static const struct sym_entry firmware_api_table[] = {
     { .hash = 0xe429e1c2, .address = (uint32_t)__floatundisf }, /* __floatundisf */
     { .hash = 0xe4321982, .address = (uint32_t)__floatunsidf }, /* __floatunsidf */
     { .hash = 0xe44351b4, .address = (uint32_t)subghz_environment_get_protocol_name_registry }, /* subghz_environment_get_protocol_name_registry */
+    { .hash = 0xe4fd6069, .address = (uint32_t)file_info_is_dir }, /* file_info_is_dir */
     { .hash = 0xe5008d82, .address = (uint32_t)furi_message_queue_get }, /* furi_message_queue_get */
     { .hash = 0xe500b5db, .address = (uint32_t)furi_message_queue_put }, /* furi_message_queue_put */
     { .hash = 0xe50f3ae0, .address = (uint32_t)flipper_format_insert_or_update_bool }, /* flipper_format_insert_or_update_bool */
