@@ -10,7 +10,7 @@ jobs:
     # Espressif's own Docker image - already has the exact ESP-IDF v5.4.1
     # toolchain installed, so nothing needs to be downloaded/compiled by hand.
     container:
-      image: espressif/idf:v5.4.4
+      image: espressif/idf:v5.4.1
 
     steps:
       - name: Checkout your fork
