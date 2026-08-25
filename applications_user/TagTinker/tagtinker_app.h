@@ -19,7 +19,7 @@
 #include <notification/notification_messages.h>
 #include <storage/storage.h>
 #include <bt/bt_service/bt.h>
-#include <targets/f7/ble_glue/profiles/serial_profile.h>
+#include <ble_profile/extra_profiles/serial_profile.h>
 
 #include <nfc/nfc.h>
 #include <nfc/protocols/mf_ultralight/mf_ultralight.h>
